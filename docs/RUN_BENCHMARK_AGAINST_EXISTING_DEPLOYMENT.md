@@ -5,7 +5,6 @@ This guide explains how to run benchmarks against an already-deployed llm-d infr
 ## Requirements
 
 - ✅ llm-d infrastructure deployed and running in `llmdbench` namespace
-- ✅ Benchmark harness pod created (`llmdbench-harness-launcher`)
 - **No Python venv needed** - The script is bash-based and uses kubectl. **Benchmark tools are in the container** - Python and benchmark harnesses are inside the Docker image, not on your local machine
 - Tools required on your machine:
    - `kubectl`
@@ -17,7 +16,7 @@ This guide explains how to run benchmarks against an already-deployed llm-d infr
 
 The `run_only.sh` script might lead to issues with automatic execution. Use this manual approach instead:
 
-1. Prepare the Benchmark Pod
+1. Create the Benchmark Pod `llmdbench-harness-launcher`
 
 ```bash
 cd existing_stack
