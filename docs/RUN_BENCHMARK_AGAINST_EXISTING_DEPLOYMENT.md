@@ -213,6 +213,6 @@ kubectl delete job -n llmdbench download-model --ignore-not-found=true
   1. The infrastructure is already deployed
   2. Simulated accelerators don't need real models
   3. The benchmark harness pod is already created
-- **Image version:** Use `ghcr.io/llm-d/llm-d-benchmark:v0.3.7` (`:latest` doesn't exist)
+- **Image version:** Use `ghcr.io/llm-d/llm-d-benchmark:v0.3.7` the `:latest` tag doesn't exist
 
 
