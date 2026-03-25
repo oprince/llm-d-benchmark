@@ -1,0 +1,74 @@
+# Configuration for running benchmarks against existing llm-d simulated deployment
+# This config uses the existing deployment created by deploy_llmd.sh
+
+# Control settings
+control_kubectl: kubectl
+
+# Endpoint configuration (existing deployment)
+endpoint_stack_name: ms-sim
+endpoint_namespace: llmdbench
+endpoint_model: random
+endpoint_base_url: http://infra-sim-inference-gateway-istio.llmdbench.svc.cluster.local
+endpoint_hf_token_secret: hf-token
+
+# Harness configuration
+harness_name: inference-perf
+harness_namespace: llmdbench
+harness_results_pvc: workload-pvc
+harness_image: ghcr.io/llm-d/llm-d-benchmark:v0.3.7
+harness_parallelism: 1
+harness_wait_timeout: 600
+harness_dataset_url: ""
+harness_cpu: 1
+harness_memory: 2Gi
+
+# Workload profiles
+workload:
+  # Simple benchmark with random synthetic data
+  sanity_random:
+    load:
+      type: constant
+      stages:
+      - rate: 2
+        duration: 60
+    api:
+      type: completion
+      streaming: true
+    server:
+      type: vllm
+      model_name: random
+      base_url: http://infra-sim-inference-gateway-istio.llmdbench.svc.cluster.local
+      ignore_eos: true
+    tokenizer:
+      pretrained_model_name_or_path: facebook/opt-125m
+    data:
+      type: random
+      input_distribution:
+        min: 10
+        max: 100
+        mean: 50
+        std_dev: 10
+        total_count: 200
+      output_distribution:
+        min: 10
+        max: 100
+        mean: 50
+        std_dev: 10
+        total_count: 200
+    report:
+      request_lifecycle:
+        summary: true
+        per_stage: true
+        per_request: true
+    storage:
+      local_storage:
+        path: /workspace
+
+# Environment variables to pass to harness pod
+env:
+  - name: LLMDBENCH_RUN_EXPERIMENT
+    value: "sim-inference-perf-test"
+  - name: RAYON_NUM_THREADS
+    value: "1"
+
+# Made with Bob
