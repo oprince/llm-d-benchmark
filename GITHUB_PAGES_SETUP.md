@@ -15,7 +15,7 @@ This document explains how to enable and configure GitHub Pages for the llm-d-be
 2. Click on **Settings** (top right)
 3. Scroll down to **Pages** in the left sidebar
 4. Under **Source**, select:
-   - **Branch:** `main` (or your default branch)
+   - **Branch:** `simulator_benchmark`
    - **Folder:** `/docs`
 5. Click **Save**
 
@@ -37,11 +37,24 @@ Visit these URLs to verify everything is working:
 - **Home page:** `https://oprince.github.io/llm-d-benchmark/`
 - **Benchmark guide:** `https://oprince.github.io/llm-d-benchmark/RUN_BENCHMARK_AGAINST_EXISTING_DEPLOYMENT.html`
 
+## File Structure
+
+```
+llm-d-benchmark/
+├── GITHUB_PAGES_SETUP.md    # This file
+└── docs/
+    ├── _config.yml          # Jekyll configuration
+    ├── Gemfile              # Ruby dependencies
+    ├── index.md             # Main documentation index
+    ├── RUN_BENCHMARK_AGAINST_EXISTING_DEPLOYMENT.md
+    └── [other documentation files]
+```
+
 ## Files Created
 
 The following files were created to enable GitHub Pages:
 
-1. **`_config.yml`** - Jekyll configuration
+1. **`docs/_config.yml`** - Jekyll configuration
    - Sets the theme (Cayman)
    - Configures site title and description
    - Defines build settings
@@ -51,7 +64,7 @@ The following files were created to enable GitHub Pages:
    - Features the benchmark guide
    - Provides navigation
 
-3. **`Gemfile`** - Ruby dependencies
+3. **`docs/Gemfile`** - Ruby dependencies
    - Specifies Jekyll and plugins
    - Required for local testing
 
@@ -68,6 +81,9 @@ To test the site locally before pushing:
 # On macOS:
 brew install ruby
 gem install bundler
+
+# Navigate to docs directory
+cd docs
 
 # Install dependencies
 bundle install
@@ -115,7 +131,7 @@ To add or update documentation:
 
 ### Theme Not Applied
 
-- Verify `_config.yml` is in the repository root
+- Verify `_config.yml` is in the `docs/` directory
 - Check that `remote_theme` is correctly specified
 - Wait a few minutes for GitHub to rebuild
 
@@ -123,21 +139,27 @@ To add or update documentation:
 
 - **Site URL:** `https://oprince.github.io/llm-d-benchmark/`
 - **Theme:** Cayman (via `pages-themes/cayman@v0.2.0`)
-- **Source:** `docs/` folder on `main` branch
+- **Source:** `docs/` folder on `simulator_benchmark` branch
 - **Build:** Automatic on push
 
 ## Next Steps
 
 1. Push all changes to GitHub:
    ```bash
-   git add _config.yml Gemfile docs/index.md docs/RUN_BENCHMARK_AGAINST_EXISTING_DEPLOYMENT.md
+   git add docs/_config.yml docs/Gemfile docs/index.md docs/RUN_BENCHMARK_AGAINST_EXISTING_DEPLOYMENT.md GITHUB_PAGES_SETUP.md
    git commit -m "Add GitHub Pages configuration with Jekyll theme"
-   git push origin main
+   git push origin simulator_benchmark
    ```
 
-2. Enable GitHub Pages in repository settings (see Step 1 above)
+2. Enable GitHub Pages in repository settings (see Step 1 above):
+   - Go to Settings → Pages
+   - Select Branch: `simulator_benchmark`
+   - Select Folder: `/docs`
+   - Click Save
 
-3. Wait for deployment and visit your site!
+3. Wait for deployment (1-2 minutes) and visit your site at `https://oprince.github.io/llm-d-benchmark/`
+
+**Note:** If the site still appears empty after deployment, check the GitHub Actions tab for build errors. The Jekyll build process should complete successfully within 1-2 minutes.
 
 ## Resources
 
