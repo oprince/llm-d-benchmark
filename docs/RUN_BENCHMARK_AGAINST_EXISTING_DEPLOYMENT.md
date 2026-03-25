@@ -1,6 +1,6 @@
 # Running Benchmark Against Existing llm-d Deployment
 
-This guide explains how to run benchmarks against an already-deployed llm-d infrastructure (simulated accelerators).
+This guide explains how to run benchmarks against an already-deployed llm-d infrastructure with simulated accelerators.
 
 ## Requirements
 
