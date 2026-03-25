@@ -5,7 +5,7 @@ This guide explains how to run benchmarks against an already-deployed llm-d infr
 ## Requirements
 
 - ✅ llm-d infrastructure deployed and running in `llmdbench` namespace
-- **No Python venv needed** - The script is bash-based and uses kubectl. **Benchmark tools are in the container** - Python and benchmark harnesses are inside the Docker image, not on your local machine
+- **No Python venv needed** - The script is bash-based and uses kubectl. Python and benchmark harnesses are inside the Docker image, not on your local machine
 - Tools required on your machine:
    - `kubectl`
    - `yq` (YAML processor) - install with `brew install yq` if missing
