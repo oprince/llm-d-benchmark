@@ -110,12 +110,12 @@ The `summary_lifecycle_metrics.json` contains:
 
 ## Why This Approach?
 
-### Full e2e Script (setup/e2e.sh)
-- Deploys entire infrastructure from scratch
-- Downloads models - no need when running with a simulator
+### No need for the full e2e Script (setup/e2e.sh)
+- It deploys the entire infrastructure from scratch
+- It downloads models - no need when running with a simulator
 
 
-### run_only.sh Script
+### Use the run_only.sh Script
 - Uses existing infrastructure
 - Skips deployment steps
 - Creates pod and profile
